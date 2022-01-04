@@ -1,0 +1,42 @@
+---
+id: hippo-forms-library
+title: hippo-forms-library
+---
+
+通过引入 hippo-forms-library 可以快速应用 hippo 的基础组件,用法参考 <a href='https://hippod.alibaba-inc.com/comps/button'>hippo</a>。
+
+引入组件类型：
+
+- string --> Input
+- input --> Input
+- boolean --> Switch
+- switch --> Switch
+- number --> NumberPicker
+- numberInput --> NumberPicker
+- select --> Select
+- object --> ObjectField
+- array --> ArrayCardField
+- arrayTable --> ArrayTableField
+- date --> DatePicker
+- month --> DatePicker.MonthPicker
+- year --> DatePicker.YearPicker
+- time --> TimePicker
+- rangePicker --> DatePicker.RangePicker
+- rating --> Rating
+- radio --> Radio.Group
+- upload --> Upload
+- transfer --> Transfer
+- treeSelect --> TreeSelect
+- tagFilter --> TagFilter
+- cascaderSelect --> CascaderSelect
+- rangeInput --> RangeInput
+- checkbox --> CheckBox
+- checkboxGroup --> Checkbox.Group
+
+import ExampleCustomizer from '../../../../src/components/ExampleCustomizer';
+import * as Atom from '../../../../src/stories/rdxForm/tutorials/hippo-forms-library';
+import AtomSource from '!!raw-loader!../../../../src/stories/rdxForm/tutorials/hippo-forms-library';
+
+### Sample
+
+<ExampleCustomizer code={AtomSource} example={Atom} />

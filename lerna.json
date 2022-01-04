@@ -1,0 +1,25 @@
+{
+  "packages": [
+    "packages/*",
+    "libs/*",
+    "examples/*"
+  ],
+  "nohoist": [
+    "**/html-minifier-terser",
+    "*/@docusaurus/*",
+    "docs/**"
+  ],
+  "command": {
+    "bootstrap": {
+      "hoist": true,
+      "noCi": true,
+      "npmClientArgs": [
+        "--no-package-lock"
+      ]
+    }
+  },
+  "useWorkspaces": false,
+  "version": "0.3.0",
+  "registry": "https://registry.npm.alibaba-inc.com/",
+  "npmClient": "tnpm"
+}

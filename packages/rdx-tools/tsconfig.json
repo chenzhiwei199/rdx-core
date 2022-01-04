@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2016",
+    "noImplicitAny": false,
+    "sourceMap": false,
+    "rootDirs": ["./src"],
+    "outDir": "dist/js",
+    "baseUrl": ".",
+    "jsx": "react",
+    "esModuleInterop": true,
+    "noEmitOnError": true,
+    "typeRoots": ["node_modules/@types"],
+    "paths": {
+      "@alife/*": ["../../packages/*/src"]
+    }
+  }
+}

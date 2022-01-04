@@ -1,0 +1,50 @@
+---
+id: RdxFormRoot
+title: RdxFormRoot
+---
+
+RdxFormRoot 是所有表单组件的顶层组件，实现中依赖的 React.Context,所以会存在 Context 的限制，当内部节点存在嵌套的 RdxFormRoot 时，表单状态是隔离的。
+
+---
+
+```jsx
+function RdxFormRoot<
+  GBaseType extends keyof TypeMap,
+  GComponentType extends keyof GComponents
+>(
+  props: IRdxFormRoot<GSource, GCompoonentPropss>
+): JSX.Element;
+
+export interface IRdxFormRoot<GSource, GCompoonentPropss extends IComponents > {
+  children?: React.ReactNode;
+  /**
+   *  表单存储数据的store
+   */
+  store?: FormStore<GSource, GCompoonentPropss>;
+  /**
+   * 开启表单状态展示
+   */
+  enabledStatePreview?: boolean;
+  /**
+   * 通过JsonView来优化状态呈现的方式
+   */
+  JsonView?: React.FC<{ data: any }>;
+  /**
+   * 自动校验，默认是false，开启之后会在表单初始化的时候进行校验，但是不会展示， 通过这种方式不获取表单校验的依赖项。
+   * 当表单的校验信息会在表单被编辑后，或者依赖的表单项编辑后，会自动进行校验
+   */
+  autoValidate?: boolean;
+}
+```
+
+---
+
+简单用法
+
+import ExampleCustomizer from '../../../../src/components/ExampleCustomizer';
+import * as Atom from '../../../../src/stories/rdxForm/api/formBuilder/RdxFormRoot';
+import AtomSource from '!!raw-loader!../../../../src/stories/rdxForm/api/formBuilder/RdxFormRoot';
+
+<ExampleCustomizer code={AtomSource} example={Atom} />
+
+---

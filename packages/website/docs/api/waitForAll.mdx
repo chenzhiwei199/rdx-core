@@ -1,0 +1,29 @@
+---
+id: waitForAll
+title: waitForAll
+---
+
+通过传递一个或多个atom或者compute，返回一个新的衍生状态，这个衍生状态可以并发的获取多个异步的状态。
+
+---
+
+```jsx
+function waitForAll<T extends TMixedRdxValue>(
+  dependencies: T,
+): T extends RdxValue<infer P>
+  ? RdxValueReadOnly<P>
+  : RdxValueReadOnly<{ [P in keyof T]: UnwrapRdxValue<T[P]> }>;
+
+export type TMixedRdxValue =
+  | RdxValue<any>
+  | RdxValue<any>[]
+  | { [key: string]: RdxValue<any> };
+```
+
+- dependencies: 可以是一个 atom 或者是一个 compute，或者是有atom、compute组成的数组或者对象.
+
+import ExampleCustomizer from '../../src/components/ExampleCustomizer';
+import * as Example from '../../src/stories/api/waitForAll';
+import code from '!!raw-loader!../../src/stories/api/waitForAll';
+
+<ExampleCustomizer code={code} example={Example} />

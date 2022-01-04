@@ -1,0 +1,18 @@
+// {
+//   "extends": "../../tsconfig.json",
+//   "exclude": ["node_modules"],
+//   "include": ["src/**/*"],
+//   "compilerOptions": {
+//     "outDir": "dist"
+//   }
+// }
+{
+  "extends": "../../tsconfig.json",
+  "exclude": ["node_modules"],
+  "include": ["src/**/*", "../../../packages/form-widgets/src/layout"],
+  "compilerOptions": {
+    "outDir": "dist",
+    "declaration": true,
+    "declarationDir": "./dist"
+  }
+}

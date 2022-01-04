@@ -1,0 +1,36 @@
+---
+id: useLinkFormComputeState
+title: useLinkFormComputeState(path)
+---
+
+通过 useLinkFormComputeState 这个 hooks， 可以在 RdxFormRoot 内部通过 path 的方式获取到表单项的衍生值和设置器。
+
+---
+
+```jsx
+function useLinkFormComputeState<
+  GPath extends TStringPathResolver<GSource>,
+  GComponentType extends keyof GComponents
+>(
+  path: GPath
+): TRdxUseStateReturn<
+  IViewModel<TGetString<GSource, GPath>, GCompoonentPropss[GComponentType]>
+>;
+
+```
+
+**props**
+
+- path 通过传入需要关联的属性的路径
+
+---
+
+简单用法
+
+import ExampleCustomizer from '../../../../src/components/ExampleCustomizer';
+import * as Atom from '../../../../src/stories/rdxForm/api/formBuilder/useLinkFormComputeState';
+import AtomSource from '!!raw-loader!../../../../src/stories/rdxForm/api/formBuilder/useLinkFormComputeState';
+
+<ExampleCustomizer code={AtomSource} example={Atom} />
+
+---

@@ -1,0 +1,101 @@
+---
+id: createFormStore
+title: createFormStore(values)
+---
+
+通过 createFormStore 可以创建一个初始化的 store，传递给表单组件
+
+---
+
+```jsx
+function createFormStore: (values: Partial<GSource>):FormStore<GSource, GCompoonentPropss>
+
+class FormStore {
+  /**
+   * 订阅一个或多个表单字段
+   **/
+  subscribe<
+    GParams extends
+      | TStringPathResolver<GSource>
+      | TStringPathResolver<GSource>[]
+  >(
+    id: GParams,
+    callback: (value: TSubscribeResult<GSource, GParams>) => void
+  ): void
+  /**
+   * 取消订阅
+   * */
+  unsubscribe(callback: Function): void
+   /**
+   * 订阅所有表单的状态
+   **/
+   subscribeAll(callback: (v: GSource) => void): void
+
+   /**
+   * 关联表单的衍生状态，用法同useLinkFormComputeState
+   * */
+   useLinkFormComputeState<GPath extends TStringPathResolver<GSource>>(
+    path: GPath
+  ): TRdxUseStateReturn<IViewModel<TGetString<GSource, GPath>, any>>
+  /**
+   * 关联表单的值，用法同useLinkFormValueState
+   * */
+   useLinkFormValueState<GPath extends TStringPathResolver<GSource>>(
+    path: GPath
+  ): TRdxUseStateReturn<TGetString<GSource, GPath>>
+  /**
+   * 关联表单的状态，用法同useLinkFormStatusState
+   * */
+   useLinkFormStatusState<GPath extends TStringPathResolver<GSource>>(
+    path: GPath
+  ): TRdxUseStateReturn<TFormStatus<any>>
+  /**
+   * 设置表达的值
+   * */
+  setFormValue<GPath extends TStringPathResolver<GSource>>(
+    id: GPath,
+    newValue: TNextValue<TResult<GSource, GPath>>
+  ): void
+  /**
+   * 设置表达的状态
+   * */
+   setFormStatus<GComponentType extends keyof GCompoonentPropss>(
+    id: TStringPathResolver<GSource>,
+    newValue: TNextValue<TFormStatus<GCompoonentPropss[GComponentType]>>
+  ): void
+   setFormCompute<
+    GPath extends TStringPathResolver<GSource>,
+    GComponentType extends keyof GCompoonentPropss
+  >(
+    id: TStringPathResolver<GSource>,
+    newValue: TNextValue<
+      IViewModel<
+        TModelResult<GSource, GPath>,
+        GCompoonentPropss[GComponentType]
+      >
+    >
+  ): void
+  /**
+   * 校验表单的值，为null则全量校验
+   * */
+  async validate(
+    id?: TStringPathResolver<GSource> | TStringPathResolver<GSource>[]
+  ): void
+}
+```
+
+**props**
+
+- values 初始化 store 的值
+
+---
+
+简单用法
+
+import ExampleCustomizer from '../../../../src/components/ExampleCustomizer';
+import * as Atom from '../../../../src/stories/rdxForm/api/formBuilder/createFormStore';
+import AtomSource from '!!raw-loader!../../../../src/stories/rdxForm/api/formBuilder/createFormStore';
+
+<ExampleCustomizer code={AtomSource} example={Atom} />
+
+---

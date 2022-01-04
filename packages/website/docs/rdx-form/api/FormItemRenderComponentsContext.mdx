@@ -1,0 +1,63 @@
+---
+id: FormItemRenderComponentsContext
+title: FormItemRenderComponentsContext
+---
+
+FormItemRenderComponentsContext 可以定义表单项如何渲染
+
+---
+
+```jsx
+const FormItemRenderComponentsContext: React.Context<IFormItemRenderComponentContext>
+
+export interface IFormItemRenderComponentContext {
+  TitleComponent: TReactComponent<IContentComponent>;
+  ContentComponent: TReactComponent<IContentComponent>;
+  WrapperComponent: TReactComponent<IContentComponent>;
+}
+export interface IContentComponent extends IFormInfo {
+  id: string;
+  children?: React.ReactNode;
+  type?: BaseType;
+}
+export interface IFormInfo extends IFormBasic{
+  // 响应函数中的错误信息
+  errorMsg?: string;
+  // 表单中的错误信息
+  formErrorMsg?: string[];
+}
+/**
+ * 表单基础属性
+ */
+export interface IFormBasic {
+  // 是否可见,表单统一调用
+  visible?: boolean;
+  // 是否展示title
+  showTitle?: boolean;
+  // 标题
+  title?: string;
+  // 详情
+  desc?: string;
+  // 表单提示信息
+  tips?: string ;
+  // 表单提示信息的位置，默认表单后面
+  tipsPosition?: 'before' | 'after'
+  // 展示必填标记
+  require?: boolean;
+}
+```
+
+---
+
+简单用法
+
+import ExampleCustomizer from '../../../src/components/ExampleCustomizer';
+import * as FormItemRenderCompnents from '../../../src/stories/rdxForm/api/formBuilder/formItemRenderCompnents';
+import FormItemRenderCompnentsSource from '!!raw-loader!../../../src/stories/rdxForm/api/formBuilder/formItemRenderCompnents';
+
+<ExampleCustomizer
+  code={FormItemRenderCompnentsSource}
+  example={FormItemRenderCompnents}
+/>
+
+---

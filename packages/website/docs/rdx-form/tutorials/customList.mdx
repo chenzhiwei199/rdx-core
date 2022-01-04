@@ -1,0 +1,29 @@
+---
+id: customList
+title: 自定义渲染列表
+---
+
+import ExampleCustomizer from '../../../src/components/ExampleCustomizer';
+import * as Atom from '../../../src/stories/rdxForm/tutorials/customList';
+import AtomSource from '!!raw-loader!../../../src/stories/rdxForm/tutorials/customList';
+
+实现一个类型满足 `React.FC<IFormComponentProps<any>> | React.ComponentClass<IFormComponentProps<any>>`的组件，
+通过 arrayHelper.mutators 来对表格进行操作。
+构建一个表单。
+
+```jsx
+export interface IFormComponentProps<T extends any> extends IBaseFormComponentProps {
+  children?: React.ReactNode
+   // 数组的操作方法, 使用该方法可以精确控制更新
+   arrayHelper?: {
+    mutators?: IArrayMutators
+  }
+  componentProps?:  T
+}
+```
+
+### 通过 atom 进行组件间状态的共享
+
+### Sample
+
+<ExampleCustomizer code={AtomSource} example={Atom} />

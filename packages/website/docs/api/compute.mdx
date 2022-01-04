@@ -1,0 +1,67 @@
+---
+id: compute
+title: compute(state)
+---
+
+compute 在 Rdx 中代表一个计算的状态。compute() 函数返回一个可以读写的 RdxState。
+
+---
+
+### API
+
+```jsx
+function atom<GModel>({
+  id: string,
+  defaultValue: GModel | Promise<GModel> | RdxState<GModel>,
+  get: IRdxComputeGet,
+  set?: IRdxComputeSet<GModel>
+}): RdxState<T>
+```
+
+```jsx
+type IRdxComputeGet<GModel> = (
+  config: IRdxComputeGetParams
+) => DataModel<GModel>;
+type IRdxComputeSet<GModel> = (
+  config: { id: string, get: RdxGet, set: RdxSet, reset: RdxReset },
+  newValue: GModel
+) => void;
+interface IRdxComputeGetParams {
+  id: string;
+  get: RdxGet;
+}
+type RdxGet = <GModel>(node: TPath<GModel>) => GModel;
+type RdxSet = <GModel>(
+  node: TPath<GModel>,
+  value: ValueOrUpdater<GModel>
+) => void;
+type RdxReset = <GModel>(node: RdxState<GModel>) => void;
+```
+
+- id id 一个唯一的字符串，用来在 RdxContext 下标记一个唯一的 compute 状态。
+- get 可以传入一个方法来得出计算状态。你可以通过函数直接返回一个值，也可以通过直接返回一个异步的 promise.这个 get 方法可以获得以下参数：
+  - id 当前 compute 的唯一 id
+  - get 可以通过这个方法获取其他 atom 或者 compute 的值，同时这里会订阅对相应的的 atom 或者 compute，所以每当订阅的 atom 或者 compute 发生改变的时候，这个方法都会被重新调用，计算最新的值。
+- set
+  - id 当前 compute 的唯一 id
+  - get 一个方法可以获取其他 atom 或者 compute 的值，这里不会订阅响应的 atom 和 compute.
+  - set 一个方法可以设置其他的 atom 或者 compute 的值。
+
+---
+
+通常的时候，compute 可以配合一下 hooks 一起使用
+
+- [`useRdxState()`](/docs/api/useRdxState)
+- [`useRdxStateLoader()`](/docs/api/useRdxStateLoader)
+- [`useRdxSetter()`](/docs/api/useRdxSetter)
+- [`useRdxReset()`](/docs/api/useRdxReset)
+
+---
+
+### EXAMPLE
+
+import ExampleCustomizer from '../../src/components/ExampleCustomizer';
+import * as Example from '../../src/stories/api/compute';
+import code from '!!raw-loader!../../src/stories/api/compute';
+
+<ExampleCustomizer code={code} example={Example} />

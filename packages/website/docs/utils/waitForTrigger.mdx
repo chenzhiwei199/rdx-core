@@ -1,0 +1,43 @@
+---
+id: waitForTrigger
+title: waitForTrigger(dependencies)
+---
+
+会根据当前参数的 RdxState 来返回 RdxState 的值，状态和设置器,，并且这个 hooks 将会订阅这个 RdxState 的值的变化和值的加载状态。
+
+---
+
+```jsx
+function waitForTrigger<
+  T extends RdxValue<any> | RdxValue<any>[] | { [key: string]: RdxValue<any> }
+>(
+  dependencies: T,
+  // triggerFirst为true的时候，当依赖第一次加载的时候会将pendingCompute的状态设置为Status.Running,当一次加载完成的时候，会将pendingCompute设置为Status.IDeal，反之则第一次不会触发任何状态。
+  triggerFirst: boolean = true
+): {
+  triggerOperates: () => {
+    // pendingValue
+    getDependenciesState: () => T extends RdxValue<infer P>
+      ? P
+      : {
+          [P in keyof T]: UnwrapRdxValue<T[P]>;
+        };
+    // 通过reset可以重置rdxStates的状态
+    reset: () => void;
+    // 通过submit可以触发pendingCompute状态的更新
+    submit: () => void;
+    // 通过loading可以获得pendingCompute当前是否处于加载状态
+    loading: () => boolean;
+  };
+export type UnwrapRdxValue<T> = T extends RdxState<infer R> ? R : never;
+```
+
+---
+
+### Example
+
+import ExampleCustomizer from '../../src/components/ExampleCustomizer';
+import * as Example from '../../src/stories/utils/waitForTrigger';
+import code from '!!raw-loader!../../src/stories/utils/waitForTrigger';
+
+<ExampleCustomizer code={code} example={Example} />

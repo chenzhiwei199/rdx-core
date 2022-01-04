@@ -1,0 +1,37 @@
+---
+id: useRdxStateLoader
+title: useRdxStateLoader(state)
+---
+
+会根据当前参数的 RdxState 来返回 RdxState 的值，状态和设置器,，并且这个 hooks 将会订阅这个 RdxState 的值的变化和值的加载状态。
+
+---
+
+```tsx
+useRdxStateLoader<GModel>(node: RdxState<GModel>): [LoaderValue<GModel>, TNext<GModel>]
+interface LoaderValue<GModel> {
+  status: Status,
+  content?:  GModel
+  errorMsg?: string
+}
+type TNext<GModel> = (value: GModel | ((oldValue: GModel) => GModel)) => void;
+enum Status {
+  Running = 'Running',
+  Finish = 'Finish',
+  Waiting = 'Waiting',
+  IDeal = 'IDeal',
+  Error = 'Error',
+}
+```
+
+- state: 可是是一个 atom 或者是一个 compute.
+
+---
+
+### Example
+
+import ExampleCustomizer from '../../src/components/ExampleCustomizer';
+import * as Example from '../../src/stories/api/useRdxStateLoader';
+import code from '!!raw-loader!../../src/stories/api/useRdxStateLoader';
+
+<ExampleCustomizer code={code} example={Example} />

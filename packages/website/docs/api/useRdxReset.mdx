@@ -1,0 +1,21 @@
+---
+id: useRdxReset
+title: useRdxReset(state)
+---
+
+会根据当前传入的state参数来返一个函数，如果state 是一个atom，则调用该函数将状态重置为默认值，如果是一个compute，则会
+调用compute的set方法，并传入DEFAULT_VALUE。
+
+---
+
+```jsx
+function useRdxReset<GModel>(state: RdxState<GModel>): () => void
+```
+
+- state: 可是是一个 atom 或者是一个 compute.
+
+import ExampleCustomizer from '../../src/components/ExampleCustomizer';
+import * as Example from '../../src/stories/api/useRdxReset';
+import code from '!!raw-loader!../../src/stories/api/useRdxReset';
+
+<ExampleCustomizer code={code} example={Example} />

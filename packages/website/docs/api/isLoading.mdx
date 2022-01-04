@@ -1,0 +1,14 @@
+---
+id: isLoading
+title: isLoading(status)
+---
+
+当status为Status.Running或者是Status.Waiting时候，返回true，否则返回false
+
+---
+
+```jsx
+function isLoading(status: Status) {
+  return status === Status.Running || status === Status.Waiting;
+}
+```

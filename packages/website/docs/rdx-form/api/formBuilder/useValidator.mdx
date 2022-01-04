@@ -1,0 +1,39 @@
+---
+id: useValidator
+title: useValidator(path)
+---
+
+useValidator 可以在 RdxFormRoot 内部获得到校验器，可以针对单个属性、多个属性、或者全部属性进行校验。
+
+---
+
+```jsx
+function useValidator(
+  path?: TStringPathResolver<GSource> | TStringPathResolver<GSource>[]
+): Promise<IErrorMessage>;
+export interface ISingleErrorMessage {
+  id: string;
+  msg: string
+}
+export interface IErrorMessage {
+  isError: boolean,
+  errorMsg: ISingleErrorMessage | ISingleErrorMessage[],
+}
+
+```
+
+**props**
+
+- path 传 null 或者 undefine 可以校验全部 RdxContext 下面的表单，可以通过传递单个属性的路径进行定向表单的校验， 可以通过多个属性的数组进行多个表单的校验。
+
+---
+
+简单用法
+
+import ExampleCustomizer from '../../../../src/components/ExampleCustomizer';
+import * as Atom from '../../../../src/stories/rdxForm/api/formBuilder/useValidator';
+import AtomSource from '!!raw-loader!../../../../src/stories/rdxForm/api/formBuilder/useValidator';
+
+<ExampleCustomizer code={AtomSource} example={Atom} />
+
+---

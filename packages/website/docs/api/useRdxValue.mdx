@@ -1,0 +1,22 @@
+---
+id: useRdxValue
+title: useRdxValue(state)
+---
+
+会根据当前参数的 RdxState 来返回相应的数据，并且这个 hooks 将会订阅这个 RdxState 值的变化。
+
+---
+
+```jsx
+function useRdxValue<GModel>(state: RdxValue<GModel>): GModel;
+```
+
+- state: 可是是一个 atom 或者是一个 compute.
+
+### Example
+
+import ExampleCustomizer from '../../src/components/ExampleCustomizer';
+import * as Atom from '../../src/stories/api/useRdxValue';
+import AtomSource from '!!raw-loader!../../src/stories/api/useRdxValue';
+
+<ExampleCustomizer code={AtomSource} example={Atom} />

@@ -1,0 +1,34 @@
+---
+id: waitForAll
+title: waitForAll(dependencies)
+---
+
+一个处理并发的帮手，你可以使用它来获得多个异步依赖的值。dependencies只能是一个 RdxValue的元组或者是一个属性由RdxValue组成的对象。
+
+---
+
+```jsx
+ function waitForAll<
+  T extends RdxValue<any> | RdxValue<any>[] | { [key: string]: RdxValue<any> }
+>(
+  dependencies: T,
+  set?: IRdxComputeSet<any>
+): T extends RdxValue<infer P>
+  ? RdxState<P>
+  : RdxState<
+      {
+        [P in keyof T]: UnwrapRdxValue<T[P]>;
+      }
+    >
+export type UnwrapRdxValue<T> = T extends RdxState<infer R> ? R : never;
+```
+---
+
+### Example
+
+import ExampleCustomizer from '../../src/components/ExampleCustomizer';
+import * as Example from '../../src/stories/utils/waitForAll';
+import code from '!!raw-loader!../../src/stories/utils/waitForAll';
+console.log('Example: ', Example);
+
+<ExampleCustomizer code={code} example={Example} />

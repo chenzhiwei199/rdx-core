@@ -1,0 +1,31 @@
+---
+id: getReferencedFormCompute
+title: getReferencedFormCompute
+---
+
+通过 getReferencedFormCompute 函数，可以通过表单的字段路径的方式获取到表单的项的compute状态。
+
+---
+
+```jsx
+function getReferencedFormCompute<GPath extends TStringPathResolver<GSource>>(
+  path: GPath
+): RdxValueReference<TGetString<GSource, GPath>>;
+
+```
+
+**props**
+
+- path 通过传入表单路径，获取表单项的compute。
+
+---
+
+简单用法
+
+import ExampleCustomizer from '../../../../src/components/ExampleCustomizer';
+import * as Atom from '../../../../src/stories/rdxForm/api/formBuilder/getReferencedFormCompute';
+import AtomSource from '!!raw-loader!../../../../src/stories/rdxForm/api/formBuilder/getReferencedFormCompute';
+
+<ExampleCustomizer code={AtomSource} example={Atom} />
+
+---

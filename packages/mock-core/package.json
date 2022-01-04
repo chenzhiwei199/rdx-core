@@ -1,0 +1,38 @@
+{
+  "name": "@czwcode/mock-core",
+  "version": "0.3.0",
+  "description": "",
+  "sideEffects": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "jest",
+    "test-watch": "jest --watch",
+    "coverage": "jest --coverage",
+    "build-lib": "tsc -p ./tsconfig.build.json",
+    "pub": "tsc && npm run publish",
+    "watch": "tsc --watch  -p ./tsconfig.build.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:czwcode/rdx.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npm.alibaba-inc.com"
+  },
+  "author": "czw",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-typescript": "^7.7.2",
+    "@types/jest": "^24.0.23",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "ts-lint": "^4.5.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "typescript": "4.x"
+  },
+  "gitHead": "8b85c08121a0430969eb94cf653e31301814489e"
+}

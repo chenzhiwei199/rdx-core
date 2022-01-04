@@ -1,0 +1,134 @@
+---
+id: FormItem
+title: FormItem
+---
+
+通过 useFormValueState 这个 hooks， 可以在 RdxFormRoot 内部获取到表单项的值和设置器。
+
+---
+
+```jsx
+function FormItem<
+  GBaseType extends keyof TypeMap,
+  GComponentType extends keyof GComponents
+>(
+  props: IRdxFormItem<GSource, GBaseType, GComponentType, GCompoonentPropss>
+): JSX.Element;
+
+export type IRdxFormItem<
+  GSource extends IDataModel,
+  GBaseType extends BaseType,
+  GComponentType extends keyof GCompoonentPropss,
+  GCompoonentPropss extends IComponents
+> = IFormBasic &
+  IFormTypes<GBaseType, GComponentType, GCompoonentPropss> &
+  TFormStatus<GCompoonentPropss[GComponentType]> & {
+    // 子节点
+    children?: ReactNode;
+    //
+    get?: IRdxFormComputeGet<
+      GSource,
+      GBaseType,
+      GComponentType extends string ? GCompoonentPropss[GComponentType] : any
+    >;
+    // 计算值
+    set?: IRdxFormComputeSet<GSource, GBaseType>;
+    // 默认值
+    defaultValue?: SuspectType<GBaseType>;
+    // virtual
+    virtual?: boolean;
+    // 唯一id
+    name?: TStringKeysResolver<GSource>;
+    // 共享数据，状态独立
+    alias?: string;
+    // 校验规则
+    rules?: IRule<GSource, GBaseType>[];
+  };
+
+export interface IFormTypes<
+  GBaseType extends BaseType,
+  GComponentType extends keyof GComponents,
+  GComponents
+> {
+  // 组件类型
+  componentType?: GComponentType extends string ? GComponentType : any;
+  // 数据类型
+  type: GBaseType;
+}
+
+export interface TFormStatus<G> {
+  // 是否预览
+  preview?: boolean;
+  // 是否可见
+  visible?: boolean;
+  // 是否可用
+  disabled?: boolean;
+  // 组件透传属性
+  componentProps?: G;
+  // 是否必选
+  require?: boolean;
+}
+
+/**
+ * 表单基础属性
+ */
+export interface IFormBasic {
+  // 是否可见,表单统一调用
+  visible?: boolean;
+  // 是否展示title
+  showTitle?: boolean;
+  // 标题
+  title?: string;
+  // 详情
+  desc?: string;
+  // 表单提示信息
+  tips?: string ;
+  // 展示必填标记
+  require?: boolean;
+
+}
+```
+
+**props**
+
+- name 表单的字段名，表单项存储在表单上下文的唯一标志，多层嵌套的时候会通过 ” . “ 来进行串联。
+- type 指定表单的数据类型， string、number、object、array、boolean 等五种基础类型
+- componentType 指定表单的渲染组件类型
+- title 表单的项的标题
+- desc 表单的详情信息
+- tips 表单的项的提示信息
+- visible 表单项是否可见,默认为 true
+- require 表单项是否必选,默认为 false
+- disabled 表单项是否可用， 默认为 false
+- preview 表单项是否预览, 默认为 false
+- showTitle 标题是否展示，默认为 true
+- rules 表单的校验规则
+- defaultValue 表单项的默认值
+- alias 表单的别名，不同的表单共享表单值，不共享表单状态。
+- virtual 是否虚拟表单项，表单的值是否记录到表单的上下文中，默认值为 true
+- get 生成表单的衍生状态，返回值会和 mixedValueAndStatus 进行浅合并，作为表单的衍生状态。
+  - id 当前 compute 的唯一 id
+  - get 可以通过这个方法获取其他 atom、 compute 的值 或者是通过 path 获取表单的值，同时这里会订阅对相应的的 atom 或者 compute，所以每当订阅的 atom、compute 或者表单的状态发生改变，这个方法都会被重新调用，计算最新的值。
+  - mixedValueAndStatus `IModel<SuspectType<GBaseType>>`;
+    表单值和状态的组合状态
+  - preComputeValue 记录的上一次的衍生状态, 为 null 则表示第一次初始化
+- set 产生表单的衍生设置器
+  - config
+    - id 当前 compute 的唯一 id
+    - get 一个方法可以获取其他 atom、compute 或者表单 的值，这里不会订阅响应的 atom 和 compute.
+    - set 一个方法可以设置其他的 atom 、compute 的值或者是表单的值。
+  - newValue 表单渲染器将要设置的新值
+- componentProps 透传给表单渲染组件的 componentProps 中
+- children 可以是 React 组件，也可以是一个函数，当为一个函数的时候优先级高于 componentType
+
+---
+
+简单用法
+
+import ExampleCustomizer from '../../../../src/components/ExampleCustomizer';
+import * as Atom from '../../../../src/stories/rdxForm/api/formBuilder/rdxFormItem';
+import AtomSource from '!!raw-loader!../../../../src/stories/rdxForm/api/formBuilder/rdxFormItem';
+
+<ExampleCustomizer code={AtomSource} example={Atom} />
+
+---

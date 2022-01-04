@@ -1,0 +1,61 @@
+---
+id: useRdxStatus
+title: useRdxStatus
+---
+
+通过 useRdxStatus 这个 hooks，会创建一个 helper，将该 helper 传给 useRdxState 可以同时订阅多个 RdxNode 的聚合状态。
+
+useRdxStatus 的目的是为了更好的管理一个组件内部的状态。
+
+对于每一个组件设计行，你一般需要考虑 5 种状态。 Blank State, Loading State, Partial State, Error State, Ideal State。
+
+当一个组件的状态全都是同步的，那么 Blank State 和 Ideal 状态是无法区分开的，这时候仅需要考虑 Ideal State.
+
+当一个组件依赖的状态中存在异步的，那么将会有 Loading State， Partial State， Error State， Ideal State 这样 4 个状态，那么怎样更好的来获取这些状态呢？
+
+通过 useRdxStatus 可以聚合多个 useRdxState 中关联的 RdxState 的状态。
+
+- Error State, 通过 isAnyError 来获取， 通过 getErrors 可以获取到错误信息
+- Loading State, 通过 isAnyPending 来获取。
+- Partial State, 通过 isPending(state)的方式来判断
+- IDeal State, 当既不是 Error 状态也不是 Loading 状态的时候，就是理想状态。
+
+#### 参考
+
+- [UI Stack](https://ongspxm.wordpress.com/2015/11/29/ui-stack-in-web-design/)
+
+---
+
+```jsx
+function useRdxStatus<GModel>(): IStatusHelper;
+ interface IStatusHelper {
+  // 任意一个关联的RdxNode处于Status.Running 或者Status.Waiting的时候,返回true，反之返回false
+  isAnyPending: () => boolean;
+  // 获取当前的state是不是出于等待状态。
+  isPending: (state: RdxState<any>) => boolean
+  // 任意一个关联的RdxNode处于Status.Error 的时候,返回true，反之返回false
+  isAnyError: () => boolean;
+  // 任意一个关联的RdxNode处于Status.Running 或者Status.Waiting的时候,返回Status.Running,
+  // 任意一个关联的RdxNode处于Status.Error 的时候,返回Status.Error
+  // 所有关联的RdxNode加载完成的时候，返回Status.IDeal
+  getStatus: () => Status;
+  refresh: () => void;
+  // 当任意一个关联的RdxNode处于Status.Error状态的时候，getErrors会返回所有的错误信息，否则返回null
+  getErrors: () => { id: string; msg: string }[] | null;
+}
+enum Status {
+  Running = 'Running',
+  IDeal = 'IDeal',
+  Error = 'Error',
+}
+```
+
+---
+
+### Example
+
+import ExampleCustomizer from '../../src/components/ExampleCustomizer';
+import * as Example from '../../src/stories/api/useRdxStatus';
+import code from '!!raw-loader!../../src/stories/api/useRdxStatus';
+
+<ExampleCustomizer code={code} example={Example} />

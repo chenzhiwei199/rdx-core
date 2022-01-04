@@ -1,0 +1,18 @@
+---
+id: searchListWithSearchButton
+title: 查询列表(带查询按钮)
+---
+
+### Example
+
+一个简单的List，其实有很多需要考虑的点。
+- 表格感知到筛选项加载中的状态，区分筛选加载中和表格数据加载中。
+- 筛选项改变后，没有立即点击查询时的提示。
+- 筛选数据源获取、表格数据源获取失败后的提示和重试能力。
+- 
+
+import ExampleCustomizer from '../../src/components/ExampleCustomizer';
+import * as Example from '../../src/stories/examples/SimpleListWithSearchButton';
+import code from '!!raw-loader!../../src/stories/examples/SimpleListWithSearchButton';
+
+<ExampleCustomizer code={code} example={Example} />

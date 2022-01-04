@@ -1,0 +1,54 @@
+---
+id: FormStore
+title: FormStore
+---
+
+通过createFormStore可以返回一个FormStore对象，通过该对象，可以在RdxFormContext外部对表单进行控制
+
+---
+
+```jsx
+class FormStore<
+  GSource extends Record<string, any>,
+  GCompoonentPropss extends IComponents
+> {
+  // 获取表单的衍生状态的值
+  getComputeState(): GSource;
+  // 获取表单的值
+  getState(): GSource;
+  // 设置表单状态
+  setValue<T extends any>(value: RdxStateAndReference<T>, newValue: T): void
+  // 订阅表单整体的状态
+  subscribeAll(callback: (v: GSource) => void): void;
+  // 订阅表单的状态，通过unsubscribe来取消订阅
+  subscribe<
+    GParams extends
+      | TStringPathResolver<GSource>
+      | TStringPathResolver<GSource>[]
+  >(
+    id: GParams,
+    callback: (value: TSubscribeResult<GSource, GParams>) => void
+  ): void;
+  // 取消订阅表单的状态
+  unsubscribe<
+    GPath extends TStringPathResolver<GSource> | TStringPathResolver<GSource>[]
+  >(id: GPath, callback: Function): void;
+  // 对表单进行校验，可以对单个字段或者多个字段进行校验，不传或者传null则校验表单所有状态
+  validate(
+    id?: TStringPathResolver<GSource> | TStringPathResolver<GSource>[]
+  ): Promise<IErrorMessage>;
+}
+
+```
+
+---
+
+简单用法
+
+import ExampleCustomizer from '../../../src/components/ExampleCustomizer';
+import * as Atom from '../../../src/stories/rdxForm/api/FormStore';
+import AtomSource from '!!raw-loader!../../../src/stories/rdxForm/api/FormStore';
+
+<ExampleCustomizer code={AtomSource} example={Atom} />
+
+---

@@ -1,0 +1,37 @@
+---
+id: atom
+title: atom(options)
+---
+
+atom 在 Rdx 中代表一个状态。atom() 函数返回一个可以读写的 RdxState。
+
+---
+
+```jsx
+function atom<T>({
+  id: string,
+  defaultValue: T | Promise<T> | RdxState<T>,
+}): RdxState<T>
+```
+
+- id 一个唯一的字符串，用来在 RdxContext 下标记一个唯一的 atom 状态。
+- defaultValue 当 atom 在 RdxContext 下初始化时的默认值。
+
+---
+
+通常的时候，atom 可以配合一下 hooks 一起使用
+
+- [`useRdxState()`](/docs/api/useRdxState)
+- [`useRdxStateLoader()`](/docs/api/useRdxStateLoader)
+- [`useRdxSetter()`](/docs/api/useRdxSetter)
+- [`useRdxReset()`](/docs/api/useRdxReset)
+
+---
+
+### Example
+
+import ExampleCustomizer from '../../src/components/ExampleCustomizer';
+import * as Atom from '../../src/stories/api/atom';
+import AtomSource from '!!raw-loader!../../src/stories/api/atom';
+
+<ExampleCustomizer code={AtomSource} example={Atom} />

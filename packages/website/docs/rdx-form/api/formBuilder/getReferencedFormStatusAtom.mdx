@@ -1,0 +1,30 @@
+---
+id: getReferencedFormStatusAtom
+title: getReferencedFormStatusAtom
+---
+
+通过 getReferencedFormStatusAtom函数，可以通过表单的字段路径的方式获取到表单的项的状态的atom。
+
+---
+
+```jsx
+  function getReferencedFormStatusAtom<
+      GPath extends TStringPathResolver<GSource>
+    >(path: GPath): RdxValueReference<TFormStatus<any>>
+```
+
+**props**
+
+- path 通过传入表单路径，获取表单状态的atom。
+
+---
+
+简单用法
+
+import ExampleCustomizer from '../../../../src/components/ExampleCustomizer';
+import * as Atom from '../../../../src/stories/rdxForm/api/formBuilder/getReferencedFormStatusAtom';
+import AtomSource from '!!raw-loader!../../../../src/stories/rdxForm/api/formBuilder/getReferencedFormStatusAtom';
+
+<ExampleCustomizer code={AtomSource} example={Atom} />
+
+---

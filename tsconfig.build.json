@@ -1,0 +1,30 @@
+{
+  // "extends": "@tsconfig/docusaurus/tsconfig.json",
+  "compilerOptions": {
+    // "declarationDir": "./dist",
+    // "declaration": true,
+    "strict": true,
+    "allowJs": true,
+    "preserveConstEnums": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "strictNullChecks": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "disableSizeLimit": true,             
+    "importHelpers": false,   
+    "noStrictGenericChecks": true,
+    // leave JSX as it is
+    "jsx": "react",
+    // resolve modules as you would expect
+    "moduleResolution": "node",
+    // leave imports as they are
+    "module": "esnext",
+    "downlevelIteration": true,
+    // do not transpile stuff like classes, async/await, ...
+    "target": "es5",
+  }
+}

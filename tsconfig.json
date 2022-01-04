@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "dist",
+    "rootDir": ".",
+    "target": "ESNext",
+    "paths": {
+      "@alife/*": ["packages/*/src", "layout/libs/*/src"],
+    }
+  },
+  "include": ["packages/**/src/**/*"]
+}

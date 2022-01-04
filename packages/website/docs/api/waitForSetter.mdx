@@ -1,0 +1,33 @@
+---
+id: waitForSetter
+title: waitForSetter
+---
+
+通过传递一个或多个atom或者compute，返回一个新的衍生状态，这个衍生状态可以通过set方法来控制是否更新状态。
+
+---
+
+```jsx
+function waitForSetter<T extends TMixedRdxValue>(
+  dependencies: T,
+  options?: {
+    // 首次是否更新状态
+    triggerFirst?: boolean;
+    // 当重置的时候，是否调用set方法
+    callSetWhenReset?: boolean;
+  }
+): T extends RdxValue<infer P>
+  ? RdxState<P>
+  : RdxState<{ [P in keyof T]: UnwrapRdxValue<T[P]> }>;
+```
+
+- dependencies: 可以是一个 atom 或者是一个 compute，或者是有atom、compute组成的数组或者对象.
+- options 
+  - triggerFirst 首次是否更新状态
+  - callSetWhenReset 当重置的时候是否更新状态
+
+import ExampleCustomizer from '../../src/components/ExampleCustomizer';
+import * as Example from '../../src/stories/api/waitForSetter';
+import code from '!!raw-loader!../../src/stories/api/waitForSetter';
+
+<ExampleCustomizer code={code} example={Example} />

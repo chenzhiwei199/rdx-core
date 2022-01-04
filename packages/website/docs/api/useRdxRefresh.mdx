@@ -1,0 +1,21 @@
+---
+id: useRdxRefresh
+title: useRdxRefresh(state)
+---
+
+会根据当前传入的state参数来返一个 函数，如果state 是一个atom，则调用该函数将刷新状态，如果是一个compute，则会重新
+调用compute的get方法。
+
+---
+
+```jsx
+function useRdxRefresh<GModel>(props: RdxValue<GModel>):() => void
+```
+
+- state: 可是是一个 atom 或者是一个 compute.
+
+import ExampleCustomizer from '../../src/components/ExampleCustomizer';
+import * as Example from '../../src/stories/api/useRdxRefresh';
+import code from '!!raw-loader!../../src/stories/api/useRdxRefresh';
+
+<ExampleCustomizer code={code} example={Example} />

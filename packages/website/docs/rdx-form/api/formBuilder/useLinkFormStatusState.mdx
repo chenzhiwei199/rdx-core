@@ -1,0 +1,32 @@
+---
+id: useLinkFormStatusState
+title: useLinkFormStatusState(path)
+---
+
+通过 useLinkFormStatusState 这个 hooks， 可以在 RdxFormRoot 内部通过 path 的方式获取到表单项状态和状态设置器。
+
+---
+
+```jsx
+function useLinkFormStatusState<GComponentType extends keyof GComponents>(
+  path: TStringPathResolver<GSource>
+): TRdxUseStateReturn<TFormStatus<GCompoonentPropss[GComponentType]>>;
+
+
+```
+
+**props**
+
+- path 通过传入需要关联的属性的路径
+
+---
+
+简单用法
+
+import ExampleCustomizer from '../../../../src/components/ExampleCustomizer';
+import * as Atom from '../../../../src/stories/rdxForm/api/formBuilder/useLinkFormStatusState';
+import AtomSource from '!!raw-loader!../../../../src/stories/rdxForm/api/formBuilder/useLinkFormStatusState';
+
+<ExampleCustomizer code={AtomSource} example={Atom} />
+
+---

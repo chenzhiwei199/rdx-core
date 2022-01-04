@@ -1,0 +1,56 @@
+---
+id: FormLayout
+title: FormLayout
+---
+
+FormLayout支持 Inline（内联）、Inline（经典）、Grid（网格）
+
+---
+
+```jsx
+React.FC<LayoutContext<any> & { children?: React.ReactNode }>
+
+export interface LayoutContext {
+  // 标题所占列数
+  labelCol?: number;
+  // 表单渲染组件所占列数
+  wrapCol?: number;
+  // 标题宽度，仅仅支持在 LayoutType.Inline模式下使用
+  labelWidth?: number;
+  // 表单渲染器的宽度，仅仅支持在 LayoutType.Inline模式下使用
+  wrapWidth?: number;
+  // 布局类型
+  layoutType?: LayoutType;
+  // 文本对齐方式, 指定为LabelTextAlign.Top则为上下排列的结构
+  labelTextAlign?: LabelTextAlign;
+  // 是否自动换行，仅在LayoutType.Grid模式下生效
+  autoRow?: boolean;
+  // Grid总列数，仅在LayoutType.Grid模式下生效
+  columns?: number;
+}
+
+export enum LayoutType {
+  Grid = 'grid',
+  Inline = 'inline',
+  Classic = 'classic',
+  Base = 'base',
+}
+
+export enum LabelTextAlign {
+  Left = 'left',
+  Right = 'right',
+  Top = 'top',
+} 
+```
+
+---
+
+简单用法
+
+import ExampleCustomizer from '../../../src/components/ExampleCustomizer';
+import * as Atom from '../../../src/stories/rdxForm/api/FormLayout';
+import AtomSource from '!!raw-loader!../../../src/stories/rdxForm/api/FormLayout';
+
+<ExampleCustomizer code={AtomSource} example={Atom} />
+
+---

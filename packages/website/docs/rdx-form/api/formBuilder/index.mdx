@@ -1,0 +1,59 @@
+---
+id: formBuilder
+title: formBuilder(options)
+---
+
+formBuilder 是一个表单构造器，可以通过 components 方法注册表单的渲染组件。
+
+---
+
+```jsx
+function formBuilder<GComponents extends IComponents>({
+  components: GComponents
+}): <GSource extends any>() => {
+  getReferencedFormValueAtom
+  getReferencedFormStatusAtom
+  getReferencedFormCompute
+  FormItem,
+  RdxFormRoot,
+  useValidator,
+  createFormStore,
+}
+
+export interface IComponents {
+  [key: string]: IFormComponent
+}
+
+```
+
+**props**
+
+- components 传递一个组件字典
+
+**返回值**
+
+- [`getReferencedFormValueAtom`](/docs/rdx-form/api/formBuilder/getReferencedFormValueAtom)
+- [`getReferencedFormStatusAtom`](/docs/rdx-form/api/formBuilder/getReferencedFormStatusAtom)
+- [`getReferencedFormCompute`](/docs/rdx-form/api/formBuilder/getReferencedFormCompute)
+- [`useValidator`](/docs/rdx-form/api/formBuilder/useValidator)
+- [`FormItem`](/docs/rdx-form/api/formBuilder/FormItem)
+- [`RdxFormRoot`](/docs/rdx-form/api/formBuilder/RdxFormRoot)
+- [`createFormStore`](/docs/rdx-form/api/formBuilder/createFormStore)
+
+---
+
+简单用法
+
+import ExampleCustomizer from '../../../../src/components/ExampleCustomizer';
+import * as Atom from '../../../../src/stories/rdxForm/api/formBuilder';
+import AtomSource from '!!raw-loader!../../../../src/stories/rdxForm/api/formBuilder';
+import * as FormItemRenderCompnents from '../../../../src/stories/rdxForm/api/formBuilder/formItemRenderCompnents';
+import FormItemRenderCompnentsSource from '!!raw-loader!../../../../src/stories/rdxForm/api/formBuilder/formItemRenderCompnents';
+<ExampleCustomizer
+  code={FormItemRenderCompnentsSource}
+  example={FormItemRenderCompnents}
+/>;
+
+<ExampleCustomizer code={AtomSource} example={Atom} />
+
+---

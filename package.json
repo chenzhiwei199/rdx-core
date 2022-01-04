@@ -1,0 +1,38 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "start": "yarn workspace website start",
+    "start:form": "yarn workspace rdx-form-demo start",
+    "start:rdx": "yarn workspace rdx-demo start",
+    "bootstrap": "lerna bootstrap",
+    "clean": " rm -rf node_modules && lerna exec -- rm -rf dist && rm -rf node_modules",
+    "doc": "yarn workspace website build",
+    "tools-watch": "yarn workspace @czwcode/rdx-devtool watch",
+    "build": "lerna run build-lib",
+    "pub": "lerna run build-lib && lerna publish ",
+    "onlypub": "lerna publish --skip-git",
+    "pub2": "lerna exec -- tnpm publish . --parallel "
+  },
+  "workspaces": [
+    "packages/*",
+    "examples/*",
+    "libs/*",
+    "layout/libs/*"
+  ],
+  "resolutions": {
+    "**/terser-webpack-plugin": "^1.4.3"
+  },
+  "devDependencies": {
+    "@ali/lerna": "^1.0.1",
+    "@types/jest": "^24.0.23",
+    "@types/react": "^16.9.52",
+    "@types/react-helmet": "^6.1.0",
+    "@types/react-router-dom": "^5.1.6",
+    "awesome-typescript-loader": "^5.2.1",
+    "jest": "^24.9.0",
+    "react-docgen-typescript-loader": "^3.6.0",
+    "typescript": "4.x"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,82 @@
+---
+id: ArrayTable
+title: ArrayTable&ArrayCard
+---
+使用表格来进行数组数据的录入，数组的形式通常分为两种，字符串数组和对象数组
+
+```jsx
+const ArrayTable = React.FC<Omit<IArrayCustomProps, 'renderTitle'>>
+const ArrayCard = React.FC<IArrayCustomProps>
+
+export interface IArrayRenderOptions {
+  //  数组工具方法
+  mutators: IArrayMutators;
+  //  当前操作行
+  currentIndex: number;
+  // 数组最大条数限制
+  maxLimit: number;
+  //  最小数据的限制
+  minLimit: number;
+  // 是否是第一项，当时第一项的时候，不应该使用moveUp方法
+  isFirst?: boolean;
+  // 是否是最后一项，当时最后一项时，不应该是用moveDown方法
+  isLast?: boolean;
+  // 是否可以删除，当数组数量小于minLimit的时候为false，其他时候为true
+  canDelete?: boolean;
+  // 是否可以新增， 当数组的数量大于maxLimit的时候为false，其他时候为true
+  canAdd?: boolean;
+  // 获取当前表格的数据
+  getValue: () => any;
+}
+export interface IArrayCustomProps {
+  maxLimit?: number;
+  minLimit?: number;
+  // 标题的渲染方法
+  renderTitle?: (options: IArrayRenderOptions) => React.ReactNode;
+  // 新增按钮的渲染方法
+  renderAddition?: (options: IArrayRenderOptions) => React.ReactNode;
+  // 数据为空时的渲染
+  renderEmpty?: (options: IArrayRenderOptions) => React.ReactNode;
+  // 操作区域的渲染方法
+  renderOperations?: (options: IArrayRenderOptions) => React.ReactNode;
+}
+export interface IArrayMutators {
+  // 新增一个
+  push: (newValue: any) => void;
+  // 最前面新增一个
+  unshift: (newValue: any) => void;
+  // 移除最前面一个
+  shift: () => void;
+  // 移除最后一个
+  pop: () => void
+  // 插入一个
+  insert: (index: number, newValue :any) => void
+  // 下移
+  moveDown: (index: number) => void;
+  // 上移
+  moveUp: (index: number) => void;
+  // 移除一个
+  remove: (index: number) => void;
+  // 移除全部
+  removeAll: () => void;
+  // 交换位置
+  move: (preIndex: number, nextIndex: number) => void;
+  // 获取空数据
+  getEmptyValue: (options: { type: BaseType, defaultValue: any}) => any
+}
+```
+
+
+
+import ExampleCustomizer from '../../../../src/components/ExampleCustomizer';
+import * as Atom from '../../../../src/stories/rdxForm/tutorials/hippo-forms-library/ArrayTable';
+import AtomSource from '!!raw-loader!../../../../src/stories/rdxForm/tutorials/hippo-forms-library/ArrayTable';
+
+
+### Sample
+<ExampleCustomizer code={AtomSource} example={Atom}/>
+
+
+
+
+

@@ -1,0 +1,45 @@
+---
+id: quick-start
+title: 快速开始
+---
+
+
+
+1. 环境配置
+2. 简单案例
+3. 远程数据源加载案例
+4. 联动案例
+5. 联动校验案例
+
+import ExampleCustomizer from '../../../src/components/ExampleCustomizer';
+
+### 1. 环境配置
+
+`npm install @alife/rdx-form` 或者 `yarn add @alife/rdx-form`
+
+### 2. 简单案例
+import * as Atom from '../../../src/stories/rdxForm/quickStart/simple';
+import AtomSource from '!!raw-loader!../../../src/stories/rdxForm/quickStart/simple';
+
+<ExampleCustomizer code={AtomSource} example={Atom}/>
+
+### 3. 远程数据源加载案例
+
+import * as Async from '../../../src/stories/rdxForm/quickStart/asyncSource';
+import AsyncSource from '!!raw-loader!../../../src/stories/rdxForm/quickStart/asyncSource';
+
+<ExampleCustomizer code={AsyncSource} example={Async}/>
+
+### 4. 联动案例
+
+import * as Link from '../../../src/stories/rdxForm/quickStart/link';
+import LinkSource from '!!raw-loader!../../../src/stories/rdxForm/quickStart/link';
+
+<ExampleCustomizer code={LinkSource} example={Link}/>
+
+### 5. 联动校验案例
+
+import * as LinkValidate from '../../../src/stories/rdxForm/quickStart/linkValidate';
+import LinkValidateSource from '!!raw-loader!../../../src/stories/rdxForm/quickStart/linkValidate';
+
+<ExampleCustomizer code={LinkValidateSource} example={LinkValidate}/>

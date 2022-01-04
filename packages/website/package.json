@@ -1,0 +1,51 @@
+{
+  "name": "website",
+  "private": true,
+  "version": "0.3.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "deploy_git": "GIT_USER=chenzhiwei199 yarn deploy",
+    "serve": "docusaurus serve"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@czwcode/hippo-form-library": "^0.3.0",
+    "@czwcode/rdx": "^0.3.0",
+    "clipboard": "^2.0.6",
+    "codesandbox": "^2.2.1",
+    "react": "^16.8.4",
+    "react-clipboard.js": "^2.0.16",
+    "react-dom": "^16.8.4",
+    "react-feather": "^2.0.8"
+  },
+  "devDependencies": {
+    "@docusaurus/core": "^2.0.0-alpha.70",
+    "@docusaurus/module-type-aliases": "^2.0.0-alpha.70",
+    "@docusaurus/plugin-debug": "^2.0.0-alpha.70",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.70",
+    "@docusaurus/theme-live-codeblock": "^2.0.0-alpha.70",
+    "@docusaurus/theme-search-algolia": "^2.0.0-alpha.70",
+    "@mdx-js/react": "^1.5.8",
+    "@tsconfig/docusaurus": "^1.0.2",
+    "@types/jest": "^24.0.23",
+    "@types/react": "^16.9.52",
+    "@types/react-helmet": "^6.1.0",
+    "@types/react-router-dom": "^5.1.6",
+    "awesome-typescript-loader": "^5.2.1",
+    "clsx": "^1.1.1",
+    "jest": "^24.9.0",
+    "raw-loader": "^4.0.2",
+    "react-docgen-typescript-loader": "^3.6.0",
+    "ts-loader": "^8.0.4",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "typescript": "4.x"
+  },
+  "gitHead": "80e6293af62a585ec176291a52a4b9f3dea8e3ed"
+}

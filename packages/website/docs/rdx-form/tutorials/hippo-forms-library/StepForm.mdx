@@ -1,0 +1,57 @@
+---
+id: StepForm
+title: StepForm&ArrayCard
+---
+使用表格来进行数组数据的录入，数组的形式通常分为两种，字符串数组和对象数组
+
+```jsx
+const StepForm = React.FC<IFormStep>
+const StepFormItem = React.FC<IStepFormItem>
+const StepFormControl = React.FC<StepFormControl>
+
+interface IStepForm {
+  // 步骤方向
+  direction?: 'ver' | 'hoz';
+  // 步骤样式
+  stepStyle?: React.CSSProperties
+  children: React.ReactNode;
+}
+interface IStepFormItem   {
+  // 标题
+  title: string;
+  // 描述
+  content?: string
+  // 图表
+  icon?: string
+  //StepItem渲染
+  itemRenderer?: (index: number ,status: string) => React.ReactNode
+  // 百分比
+  percent?: number
+  // 状态 wait
+  status?: 'wait' | 'process' | 'finish'
+  children: React.ReactNode;
+}
+
+interface IStepFormControl {
+  children: (
+    props: {
+      validate: () => Promise<IErrorMessage>;
+    } & IStepFormContext
+  ) => React.ReactNode;
+}
+```
+
+
+
+import ExampleCustomizer from '../../../../src/components/ExampleCustomizer';
+import * as Atom from '../../../../src/stories/rdxForm/tutorials/hippo-forms-library/StepForm';
+import AtomSource from '!!raw-loader!../../../../src/stories/rdxForm/tutorials/hippo-forms-library/StepForm';
+
+
+### Sample
+<ExampleCustomizer code={AtomSource} example={Atom}/>
+
+
+
+
+
